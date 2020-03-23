@@ -77,6 +77,9 @@ dependencies {
 
 
     // timber logging
-    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation "com.jakewharton.timber:timber:$version_timber"
+
+    // hdodenhof/CircleImageView
+    implementation "de.hdodenhof:circleimageview:$version_circle_image_view"
 
 }

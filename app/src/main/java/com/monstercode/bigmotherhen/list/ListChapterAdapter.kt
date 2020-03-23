@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.monstercode.bigmotherhen.databinding.ListItemBinding
 import com.monstercode.bigmotherhen.domain.Chapter
+import timber.log.Timber
 
 class ListChapterAdapter :
     ListAdapter<Chapter, ListChapterAdapter.ViewHolder>(ChapterDiffCallback()) {
@@ -24,6 +25,7 @@ class ListChapterAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Chapter) {
+            Timber.i("Chapter is $item")
             binding.chapter = item
             binding.executePendingBindings()
         }
@@ -38,17 +40,11 @@ class ListChapterAdapter :
     }
 }
 
-
 class ChapterDiffCallback : DiffUtil.ItemCallback<Chapter>() {
-
     override fun areItemsTheSame(oldItem: Chapter, newItem: Chapter): Boolean {
         return oldItem.number == newItem.number
     }
-
-
     override fun areContentsTheSame(oldItem: Chapter, newItem: Chapter): Boolean {
         return oldItem == newItem
     }
-
-
 }

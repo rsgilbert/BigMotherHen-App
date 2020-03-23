@@ -27,6 +27,6 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.monstercode.bigmotherhen.list.ListFragment"
-        android:label="ListFragment"
+        android:label="@string/list_title"
         tools:layout="@layout/fragment_list"/>
 </navigation>
