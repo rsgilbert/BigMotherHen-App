@@ -19,7 +19,7 @@ class ChapterRepository(private val chapterDao: ChapterDao) {
     }
 
     fun getChapter(number: Int) : LiveData<Chapter> = Transformations.map(chapterDao.getChapter(number)) {
-        it.domainModel
+        it.asDomainModel()
     }
 
     suspend fun refreshChapters() {

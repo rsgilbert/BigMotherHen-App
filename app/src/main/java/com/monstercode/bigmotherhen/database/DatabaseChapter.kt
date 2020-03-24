@@ -12,7 +12,9 @@ data class DatabaseChapter constructor(
     val content: String,
     val picture: String
 ) {
-    val domainModel: Chapter = Chapter(number = number, title = title, content = content, picture = picture)
+    fun asDomainModel() : Chapter {
+        return Chapter(number = number, title = title, content = content, picture = picture)
+    }
 }
 
 /**
@@ -20,6 +22,6 @@ data class DatabaseChapter constructor(
  */
 fun List<DatabaseChapter>.asDomainModel(): List<Chapter> {
     return map { chapter ->
-        chapter.domainModel
+        chapter.asDomainModel()
     }
 }

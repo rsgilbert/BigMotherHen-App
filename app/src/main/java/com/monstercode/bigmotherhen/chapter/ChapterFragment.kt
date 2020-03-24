@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.monstercode.bigmotherhen.R
 import com.monstercode.bigmotherhen.database.getDatabase
+import com.monstercode.bigmotherhen.databinding.FragmentChapterBinding
 import com.monstercode.bigmotherhen.databinding.FragmentListBinding
 import com.monstercode.bigmotherhen.repository.ChapterRepository
 
@@ -18,7 +19,7 @@ class ChapterFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentListBinding = DataBindingUtil.inflate(inflater,
+        val binding: FragmentChapterBinding = DataBindingUtil.inflate(inflater,
         R.layout.fragment_chapter, container, false)
         binding.chapterViewModel = getChapterViewModel()
         binding.lifecycleOwner = viewLifecycleOwner
