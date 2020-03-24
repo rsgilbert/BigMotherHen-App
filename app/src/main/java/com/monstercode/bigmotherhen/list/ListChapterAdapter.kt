@@ -28,12 +28,9 @@ class ListChapterAdapter(private val onClickListener: OnClickListener) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Chapter) {
-            Timber.i("Chapter is $item")
             binding.chapter = item
             binding.executePendingBindings()
         }
-
-
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {

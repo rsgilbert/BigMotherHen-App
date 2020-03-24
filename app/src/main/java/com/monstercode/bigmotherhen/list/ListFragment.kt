@@ -38,10 +38,11 @@ class ListFragment : Fragment() {
                 listViewModel.startNavigateToChapter(chapter)
             })
 
+
         listViewModel.navigateToChapter.observe(viewLifecycleOwner, Observer { chapter: Chapter? ->
             chapter?.let { nonNullChapter: Chapter ->
                 val action =
-                    ListFragmentDirections.actionListFragmentToChapterFragment2(nonNullChapter.number)
+                    ListFragmentDirections.actionListFragmentToChapterFragment(nonNullChapter.number)
                 findNavController().navigate(action)
                 listViewModel.navigateToChapterComplete()
             }

@@ -40,6 +40,7 @@ class ListViewModel(private val repository: ChapterRepository) : ViewModel() {
     fun navigateToChapterComplete() {
         _navigateToChapter.value = null
     }
+
     companion object {
         /**
          * Factory for creating [ListViewModel]

@@ -12,6 +12,7 @@ import com.monstercode.bigmotherhen.database.getDatabase
 import com.monstercode.bigmotherhen.databinding.FragmentChapterBinding
 import com.monstercode.bigmotherhen.databinding.FragmentListBinding
 import com.monstercode.bigmotherhen.repository.ChapterRepository
+import timber.log.Timber
 
 class ChapterFragment : Fragment() {
     override fun onCreateView(
@@ -34,9 +35,12 @@ class ChapterFragment : Fragment() {
         val database = getDatabase(activity)
         val repository = ChapterRepository(database.chapterDao)
         val arguments = ChapterFragmentArgs.fromBundle(arguments!!)
-        val chapterViewModelFactory = ChapterViewModelFactory(arguments.chapterNumber, repository)
-        return ViewModelProviders.of(activity, chapterViewModelFactory)
+        val chapterNumber = arguments.chapterNumber
+        val chapterViewModelFactory = ChapterViewModelFactory(repository)
+        val chapterViewModel = ViewModelProviders.of(activity, chapterViewModelFactory)
             .get(ChapterViewModel::class.java)
+        chapterViewModel.setChapterNumber(chapterNumber)
+        return chapterViewModel
     }
 
 
