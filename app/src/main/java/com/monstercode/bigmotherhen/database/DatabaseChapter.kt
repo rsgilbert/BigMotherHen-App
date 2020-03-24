@@ -11,18 +11,15 @@ data class DatabaseChapter constructor(
     val title: String,
     val content: String,
     val picture: String
-)
+) {
+    val domainModel: Chapter = Chapter(number = number, title = title, content = content, picture = picture)
+}
 
 /**
  * Map DatabaseChapter to domain object
  */
-fun List<DatabaseChapter>.asDomainModel() : List<Chapter> {
+fun List<DatabaseChapter>.asDomainModel(): List<Chapter> {
     return map { chapter ->
-        Chapter(
-            number = chapter.number,
-            title = chapter.title,
-            content = chapter.content,
-            picture = chapter.picture
-        )
+        chapter.domainModel
     }
 }

@@ -5,10 +5,7 @@ import androidx.lifecycle.Transformations
 import com.monstercode.bigmotherhen.database.ChapterDao
 import com.monstercode.bigmotherhen.database.asDomainModel
 import com.monstercode.bigmotherhen.domain.Chapter
-import com.monstercode.bigmotherhen.network.NetworkChapterList
-import com.monstercode.bigmotherhen.network.Service
-import com.monstercode.bigmotherhen.network.asDatabaseModel
-import com.monstercode.bigmotherhen.network.getNetworkService
+import com.monstercode.bigmotherhen.network.*
 import kotlinx.coroutines.withTimeout
 import timber.log.Timber
 
@@ -17,13 +14,17 @@ import timber.log.Timber
  */
 
 class ChapterRepository(private val chapterDao: ChapterDao) {
-    val chapters: LiveData<List<Chapter>> = Transformations.map(chapterDao.chapterListLiveData) {
+    val chapterList: LiveData<List<Chapter>> = Transformations.map(chapterDao.chapterListLiveData) {
         it.asDomainModel()
+    }
+
+    fun getChapter(number: Int) : LiveData<Chapter> = Transformations.map(chapterDao.getChapter(number)) {
+        it.domainModel
     }
 
     suspend fun refreshChapters() {
         try {
-            val chapters = withTimeout(5_000) {
+            val chapters: List<NetworkChapter> = withTimeout(5_000) {
                 getNetworkService().fetchChapters()
             }
             chapterDao.insertAll(NetworkChapterList(chapters).asDatabaseModel())

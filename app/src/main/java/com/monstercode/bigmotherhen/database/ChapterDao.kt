@@ -14,4 +14,7 @@ interface ChapterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(chapters: List<DatabaseChapter>)
 
+    @Query("SELECT * FROM DatabaseChapter WHERE number = :number LIMIT 1")
+    fun getChapter(number: Int) : LiveData<DatabaseChapter>
+
 }
