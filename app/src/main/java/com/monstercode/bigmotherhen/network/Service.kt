@@ -1,12 +1,10 @@
 package com.monstercode.bigmotherhen.network
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-private const val localUrl = "http://localhost:3000/"
+private const val localUrl = "http://10.0.2.2:3000"
 private const val baseUrl = ""
 private const val inUseUrl = localUrl
 
@@ -15,7 +13,7 @@ private const val inUseUrl = localUrl
  */
 interface Service {
     @GET("chapters")
-    suspend fun fetchChapters(): NetworkChapterList
+    suspend fun fetchChapters(): List<NetworkChapter>
 }
 
 /**
@@ -24,8 +22,7 @@ interface Service {
 private val service: Service by lazy {
     val retrofit = Retrofit.Builder()
         .baseUrl(inUseUrl)
-        .addConverterFactory(MoshiConverterFactory.create())
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     retrofit.create(Service::class.java)

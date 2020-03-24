@@ -1,18 +1,15 @@
 package com.monstercode.bigmotherhen.network
 
 import com.monstercode.bigmotherhen.database.DatabaseChapter
-import com.monstercode.bigmotherhen.domain.Chapter
-import com.squareup.moshi.JsonClass
 
-@JsonClass(generateAdapter = true)
+
 data class NetworkChapterList(val chapters: List<NetworkChapter>)
 
-@JsonClass(generateAdapter = true)
 data class NetworkChapter(
     val number: Int,
     val title: String,
     val content: String,
-    val picture: String
+    val picture: String?
 )
 
 /**
@@ -24,7 +21,7 @@ fun NetworkChapterList.asDatabaseModel(): List<DatabaseChapter> {
             number = chapter.number,
             title = chapter.title,
             content = chapter.content,
-            picture = chapter.picture
+            picture = chapter.picture ?: ""
         )
     }
 }

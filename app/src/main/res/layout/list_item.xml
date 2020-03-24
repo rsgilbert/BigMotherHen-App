@@ -35,7 +35,7 @@
             android:maxLines="1"
             android:padding="@dimen/spacing_normal"
             android:textStyle="bold"
-            android:text="@{String.valueOf(chapter.number)}"
+            android:text="@{@string/chapter_number(chapter.number)}"
             app:layout_constraintBottom_toTopOf="@+id/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
