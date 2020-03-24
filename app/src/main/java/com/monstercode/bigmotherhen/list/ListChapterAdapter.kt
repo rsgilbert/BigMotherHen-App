@@ -9,12 +9,15 @@ import com.monstercode.bigmotherhen.databinding.ListItemBinding
 import com.monstercode.bigmotherhen.domain.Chapter
 import timber.log.Timber
 
-class ListChapterAdapter :
+class ListChapterAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<Chapter, ListChapterAdapter.ViewHolder>(ChapterDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
+        val chapter: Chapter = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(chapter)
+        }
+        holder.bind(chapter)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,6 +33,8 @@ class ListChapterAdapter :
             binding.executePendingBindings()
         }
 
+
+
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -38,6 +43,11 @@ class ListChapterAdapter :
             }
         }
     }
+
+    class OnClickListener(val clickListener: (chapter: Chapter) -> Unit) {
+        fun onClick(chapter: Chapter) = clickListener(chapter)
+    }
+
 }
 
 class ChapterDiffCallback : DiffUtil.ItemCallback<Chapter>() {

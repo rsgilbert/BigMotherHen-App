@@ -8,15 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 
 import com.monstercode.bigmotherhen.R
 import com.monstercode.bigmotherhen.database.getDatabase
 import com.monstercode.bigmotherhen.databinding.FragmentListBinding
+import com.monstercode.bigmotherhen.domain.Chapter
 import com.monstercode.bigmotherhen.repository.ChapterRepository
+import timber.log.Timber
 
 class ListFragment : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,9 +31,21 @@ class ListFragment : Fragment() {
         )
 
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.listViewModel = getListViewModel()
-        binding.chapterList.adapter = ListChapterAdapter()
+        val listViewModel: ListViewModel = getListViewModel()
+        binding.listViewModel = listViewModel
+        binding.chapterList.adapter =
+            ListChapterAdapter(ListChapterAdapter.OnClickListener { chapter: Chapter ->
+                listViewModel.startNavigateToChapter(chapter)
+            })
 
+        listViewModel.navigateToChapter.observe(viewLifecycleOwner, Observer { chapter: Chapter? ->
+            chapter?.let { nonNullChapter: Chapter ->
+                val action =
+                    ListFragmentDirections.actionListFragmentToChapterFragment2(nonNullChapter.number)
+                findNavController().navigate(action)
+                listViewModel.navigateToChapterComplete()
+            }
+        })
         return binding.root
 
     }
