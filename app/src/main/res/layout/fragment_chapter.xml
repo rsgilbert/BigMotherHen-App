@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="chapterViewModel"
             type="com.monstercode.bigmotherhen.chapter.ChapterViewModel" />
@@ -13,18 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/spacing_normal">
-
+            android:paddingStart="@dimen/spacing_normal"
+            android:paddingEnd="@dimen/spacing_normal">
 
             <TextView
                 android:id="@+id/chapter_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/comfortaa_bold"
                 android:text="@{chapterViewModel.chapter.content}"
                 android:textColor="@android:color/primary_text_light"
                 android:textSize="20sp"
@@ -32,5 +31,4 @@
 
         </LinearLayout>
     </ScrollView>
-
 </layout>
