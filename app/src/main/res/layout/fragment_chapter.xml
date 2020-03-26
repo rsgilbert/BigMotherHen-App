@@ -16,10 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="@dimen/spacing_normal"
-            android:paddingEnd="@dimen/spacing_normal">
+            android:paddingStart="@dimen/spacing_normal">
 
-            <TextView
+            <me.biubiubiu.justifytext.library.JustifyTextView
                 android:id="@+id/chapter_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

@@ -2,14 +2,12 @@ package com.monstercode.bigmotherhen.network
 
 import com.monstercode.bigmotherhen.database.DatabaseChapter
 
-
 data class NetworkChapterList(val chapters: List<NetworkChapter>)
 
 data class NetworkChapter(
     val number: Int,
     val title: String,
-    val content: String,
-    val picture: String?
+    val content: String
 )
 
 /**
@@ -20,8 +18,7 @@ fun NetworkChapterList.asDatabaseModel(): List<DatabaseChapter> {
         DatabaseChapter(
             number = chapter.number,
             title = chapter.title,
-            content = chapter.content,
-            picture = chapter.picture ?: ""
+            content = chapter.content
         )
     }
 }

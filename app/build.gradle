@@ -79,4 +79,7 @@ dependencies {
     // gson
     implementation "com.google.code.gson:gson:$version_gson"
     implementation "com.squareup.retrofit2:converter-gson:$version_retrofit_gson"
+
+    // justifiedtextview
+    implementation "me.biubiubiu.justifytext:library:1.1"
 }

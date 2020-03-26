@@ -9,11 +9,10 @@ data class DatabaseChapter constructor(
     @PrimaryKey
     val number: Int,
     val title: String,
-    val content: String,
-    val picture: String
+    val content: String
 ) {
     fun asDomainModel() : Chapter {
-        return Chapter(number = number, title = title, content = content, picture = picture)
+        return Chapter(number = number, title = title, content = content)
     }
 }
 
