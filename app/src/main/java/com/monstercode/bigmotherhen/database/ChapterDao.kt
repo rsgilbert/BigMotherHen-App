@@ -15,6 +15,10 @@ interface ChapterDao {
     suspend fun insertAll(chapters: List<DatabaseChapter>)
 
     @Query("SELECT * FROM DatabaseChapter WHERE number = :number LIMIT 1")
-    fun getChapter(number: Int) : LiveData<DatabaseChapter>
+    fun getChapter(number: Int) : LiveData<DatabaseChapter?>
+
+
+    @Query("SELECT * FROM DatabaseChapter")
+    suspend fun chapters() : List<DatabaseChapter>
 
 }

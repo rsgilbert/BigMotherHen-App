@@ -20,15 +20,29 @@
     <fragment
         android:id="@+id/chapterFragment"
         android:name="com.monstercode.bigmotherhen.chapter.ChapterFragment"
-        android:label="ChapterFragment"
         tools:layout="@layout/fragment_chapter">
         <argument
             android:name="chapterNumber"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_chapterFragment_self"
+            app:destination="@id/chapterFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/listFragment" />
+        <action
+            android:id="@+id/action_chapterFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_chapterFragment_to_creditsFragment"
+            app:destination="@id/creditsFragment"
+            app:popUpTo="@+id/listFragment" />
     </fragment>
     <fragment
         android:id="@+id/creditsFragment"
         android:name="com.monstercode.bigmotherhen.credits.CreditsFragment"
-        android:label="CreditsFragment"
+        android:label="@string/credits_title"
         tools:layout="@layout/fragment_credits"/>
 </navigation>

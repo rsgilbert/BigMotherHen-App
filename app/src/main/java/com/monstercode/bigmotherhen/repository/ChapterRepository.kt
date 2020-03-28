@@ -3,6 +3,7 @@ package com.monstercode.bigmotherhen.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.monstercode.bigmotherhen.database.ChapterDao
+import com.monstercode.bigmotherhen.database.DatabaseChapter
 import com.monstercode.bigmotherhen.database.asDomainModel
 import com.monstercode.bigmotherhen.domain.Chapter
 import com.monstercode.bigmotherhen.network.*
@@ -18,8 +19,15 @@ class ChapterRepository(private val chapterDao: ChapterDao) {
         it.asDomainModel()
     }
 
-    fun getChapter(number: Int) : LiveData<Chapter> = Transformations.map(chapterDao.getChapter(number)) {
-        it.asDomainModel()
+    fun getChapter(number: Int): LiveData<Chapter> =
+        Transformations.map(chapterDao.getChapter(number)) { databaseChapter: DatabaseChapter? ->
+            databaseChapter?.asDomainModel()
+        }
+
+    suspend fun chapterCount() : Int {
+        val chapters = chapterDao.chapters()
+        return chapters.size
+
     }
 
     suspend fun refreshChapters() {
