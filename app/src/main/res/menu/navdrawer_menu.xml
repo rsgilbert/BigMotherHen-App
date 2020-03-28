@@ -6,4 +6,7 @@
         android:id="@+id/listFragment"
         android:title="@string/title_chapters" />
 
+    <item
+        android:id="@+id/creditsFragment"
+        android:title="@string/credits_title"/>
 </menu>

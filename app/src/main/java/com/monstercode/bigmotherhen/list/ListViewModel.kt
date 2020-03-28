@@ -1,5 +1,6 @@
 package com.monstercode.bigmotherhen.list
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.monstercode.bigmotherhen.domain.Chapter
 import com.monstercode.bigmotherhen.repository.ChapterRepository
 import com.monstercode.bigmotherhen.repository.RefreshError
+import com.monstercode.bigmotherhen.util.isLastSeenChapter
 import com.monstercode.bigmotherhen.util.singleArgViewModelFactory
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -40,6 +42,7 @@ class ListViewModel(private val repository: ChapterRepository) : ViewModel() {
     fun navigateToChapterComplete() {
         _navigateToChapter.value = null
     }
+
 
     companion object {
         /**

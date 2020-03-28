@@ -12,10 +12,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.monstercode.bigmotherhen.R
 import com.monstercode.bigmotherhen.database.getDatabase
 import com.monstercode.bigmotherhen.databinding.FragmentChapterBinding
-import com.monstercode.bigmotherhen.databinding.FragmentListBinding
 import com.monstercode.bigmotherhen.domain.Chapter
 import com.monstercode.bigmotherhen.repository.ChapterRepository
-import timber.log.Timber
+import com.monstercode.bigmotherhen.util.saveLastSeenChapter
 
 class ChapterFragment : Fragment() {
     override fun onCreateView(
@@ -29,10 +28,12 @@ class ChapterFragment : Fragment() {
         binding.chapterViewModel = chapterViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+
         // set appbar title
         chapterViewModel.chapter.observe(viewLifecycleOwner, Observer { chapter: Chapter? ->
             chapter?.let { nonNullChapter: Chapter ->
                 setAppBarTitle(nonNullChapter.title)
+                saveLastSeenChapter(nonNullChapter.number, context)
             }
         })
         return binding.root

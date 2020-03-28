@@ -26,4 +26,9 @@
             android:name="chapterNumber"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/creditsFragment"
+        android:name="com.monstercode.bigmotherhen.credits.CreditsFragment"
+        android:label="CreditsFragment"
+        tools:layout="@layout/fragment_credits"/>
 </navigation>

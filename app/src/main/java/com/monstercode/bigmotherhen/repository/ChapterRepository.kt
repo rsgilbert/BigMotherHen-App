@@ -24,9 +24,7 @@ class ChapterRepository(private val chapterDao: ChapterDao) {
 
     suspend fun refreshChapters() {
         try {
-            val chapters: List<NetworkChapter> = withTimeout(5_000) {
-                getNetworkService().fetchChapters()
-            }
+            val chapters: List<NetworkChapter> = getNetworkService().fetchChapters()
             chapterDao.insertAll(NetworkChapterList(chapters).asDatabaseModel())
         } catch (cause: Throwable) {
             Timber.e("Unable to refresh: $cause")

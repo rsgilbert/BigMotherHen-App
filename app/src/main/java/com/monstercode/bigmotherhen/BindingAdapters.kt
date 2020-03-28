@@ -1,6 +1,7 @@
 package com.monstercode.bigmotherhen
 
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.monstercode.bigmotherhen.domain.Chapter
 import com.monstercode.bigmotherhen.list.ListChapterAdapter
+import com.monstercode.bigmotherhen.util.isLastSeenChapter
 import de.hdodenhof.circleimageview.CircleImageView
 import timber.log.Timber
 import java.lang.Exception
@@ -50,4 +52,12 @@ fun RecyclerView.bindRecyclerView(data: List<Chapter>?) {
     Timber.i("Binding data size: ${data?.size}")
     (adapter as ListChapterAdapter).submitList(data)
 
+}
+
+@BindingAdapter("bookmarkLastSeenChapter")
+fun ImageView.bookmarkLastSeenChapter(chapter: Chapter) {
+    visibility = if (isLastSeenChapter(chapter.number, context)) {
+        Timber.i("This chapter of number: ${chapter.number} is the last seen")
+        View.VISIBLE
+    } else View.GONE
 }

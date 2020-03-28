@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 private const val localUrl = "http://10.0.2.2:3000"
-private const val baseUrl = ""
+private const val baseUrl = "https://bigmotherhen.herokuapp.com"
 private const val inUseUrl = localUrl
 
 /**
