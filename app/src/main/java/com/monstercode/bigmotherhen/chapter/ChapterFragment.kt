@@ -15,8 +15,7 @@ import com.monstercode.bigmotherhen.database.getDatabase
 import com.monstercode.bigmotherhen.databinding.FragmentChapterBinding
 import com.monstercode.bigmotherhen.domain.Chapter
 import com.monstercode.bigmotherhen.repository.ChapterRepository
-import com.monstercode.bigmotherhen.util.saveLastSeenChapter
-import timber.log.Timber
+import com.monstercode.bigmotherhen.util.saveLastSeenChapterNumber
 
 class ChapterFragment : Fragment() {
     private lateinit var chapterViewModel: ChapterViewModel
@@ -38,7 +37,7 @@ class ChapterFragment : Fragment() {
         chapterViewModel.chapter.observe(viewLifecycleOwner, Observer { chapter: Chapter? ->
             chapter?.let { nonNullChapter: Chapter ->
                 setAppBarTitle(nonNullChapter)
-                saveLastSeenChapter(nonNullChapter.number, context)
+                saveLastSeenChapterNumber(nonNullChapter.number, context)
             }
             if(chapter == null) {
 

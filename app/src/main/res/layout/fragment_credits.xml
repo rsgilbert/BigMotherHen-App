@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:layout_gravity="center"
-            android:src="@drawable/hen"
+            android:src="@drawable/namirimu"
             android:layout_marginBottom="@dimen/credits_image_margin" />
 
         <TextView
@@ -29,7 +29,8 @@
             android:layout_marginTop="5dp"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_light"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
 
     </LinearLayout>

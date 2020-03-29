@@ -1,14 +1,13 @@
 <resources>
-    <string name="app_name">The Big Mother Hen</string>
+    <string name="app_name">Big Mother Hen</string>
 
     <string name="share">Share</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="list_title">@string/app_name</string>
+    <string name="list_title">The Big Mother Hen</string>
     <string name="chapter_number">Chapter %1$d</string>
     <string name="title_chapters">Chapters</string>
     <string name="chapter_last_seen">LAST_SEEN</string>
     <string name="appbar_title">%1$d. %2$s</string>
-
     <string name="chapter_content">The big mother hen sat restlessly in the corner of the small chicken pen. Her young ones stirred restlessly under her feathers. Outside the darkness grew. The storm fiercely raged on. The lightning slashed across the sky illuminating parts of the chicken pen and the thunder roared across the lands. It was a stormy cold night and the big mother hen worried for her little ones. They were only a day old with hardly any feathers on their tiny little bodies.
 There was a squeak outside, maybe a twig breaking and then a loud bang! The door to the chicken pen flew open causing the big mother hen to rise in panic and move further back in the corner. She could hear her little ones echo her sudden fear and move about her restlessly. There in the doorway stood a dark mass, a man with a wide toothless grin on his face. He was tall and dark, with a pointed hat on his head and a cloak that went up to the big boots on his feet. He held a strong light to the mother hen almost blinding her.
 
@@ -18,4 +17,7 @@ The stranger reached out a hand and grabbed the big mother hen, he tucked her un
     <string name="credits_title">Credits</string>
     <string name="preferences_filename">com.monstercode.bigmotherhen</string>
     <string name="next">Next</string>
+    <string name="full_title">The Adventures of</string>
+    <string name="full_title_part_1">Adventures Of</string>
+    <string name="full_title_part_2">The Big Mother Hen</string>
 </resources>

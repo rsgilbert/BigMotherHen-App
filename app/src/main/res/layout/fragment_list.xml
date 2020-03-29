@@ -26,6 +26,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:listData="@{listViewModel.chapters }"
+            app:scrollToLastSeenChapter="@{ true }"
+            app:addDivider="@{ true }"
             tools:listitem="@layout/list_item" />
 
 

@@ -8,9 +8,9 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@drawable/hen"
+        android:icon="@drawable/footprints"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/hen"
+        android:roundIcon="@drawable/footprints"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">

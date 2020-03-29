@@ -1,19 +1,22 @@
 package com.monstercode.bigmotherhen
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.monstercode.bigmotherhen.domain.Chapter
 import com.monstercode.bigmotherhen.list.ListChapterAdapter
-import com.monstercode.bigmotherhen.util.isLastSeenChapter
+import com.monstercode.bigmotherhen.util.getLastSeenChapterNumber
+import com.monstercode.bigmotherhen.util.isLastSeenChapterNumber
+import com.monstercode.bigmotherhen.util.setClickableAnimation
 import de.hdodenhof.circleimageview.CircleImageView
 import timber.log.Timber
-import java.lang.Exception
 
 @BindingAdapter("imageUrl")
 fun ImageView.bindImage(imgUrl: String?) {
@@ -30,7 +33,6 @@ fun ImageView.bindImage(imgUrl: String?) {
     }
 }
 
-
 @BindingAdapter("imageUrl")
 fun CircleImageView.bindImage(imgUrl: String?) {
     imgUrl?.let {
@@ -46,18 +48,46 @@ fun CircleImageView.bindImage(imgUrl: String?) {
     }
 }
 
-
 @BindingAdapter("listData")
 fun RecyclerView.bindRecyclerView(data: List<Chapter>?) {
-    Timber.i("Binding data size: ${data?.size}")
     (adapter as ListChapterAdapter).submitList(data)
+}
 
+@BindingAdapter("scrollToLastSeenChapter")
+fun RecyclerView.scrollToLastSeenChapter(doScroll: Boolean?) {
+    doScroll?.let {
+        if (it) {
+            post {
+                Timber.i("Last seen position is ${getLastSeenChapterNumber(context)}")
+                smoothScrollToPosition(getLastSeenChapterNumber(context))
+            }
+        }
+    }
 }
 
 @BindingAdapter("bookmarkLastSeenChapter")
 fun ImageView.bookmarkLastSeenChapter(chapter: Chapter) {
-    visibility = if (isLastSeenChapter(chapter.number, context)) {
-        Timber.i("This chapter of number: ${chapter.number} is the last seen")
+    visibility = if (isLastSeenChapterNumber(chapter.number, context)) {
         View.VISIBLE
     } else View.GONE
+}
+
+@BindingAdapter("addClickAnimation")
+fun RelativeLayout.addClickAnimation(shouldAdd: Boolean?) {
+    shouldAdd?.let {
+        if (it) {
+            setClickableAnimation(context = context, view = this)
+        }
+    }
+}
+
+@BindingAdapter("addDivider")
+fun RecyclerView.addDivider(shouldAdd: Boolean?) {
+    shouldAdd?.let {
+        if(it) {
+            val itemDec = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+            itemDec.setDrawable(ContextCompat.getDrawable(context, R.drawable.divider)!!)
+            addItemDecoration(itemDec)
+        }
+    }
 }
